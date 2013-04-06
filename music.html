@@ -32,9 +32,6 @@
     <script src="assets/inc/Base64.js" type="text/javascript"></script>
     <script src="assets/inc/base64binary.js" type="text/javascript"></script>
 
-    <!-- Browser detection -->
-    <script src="assets/js/browserDetect.js"></script>
-
     <style>
       body, html{
         min-height: 100%;
@@ -73,16 +70,6 @@
         left: 20px;
         bottom: 10px;
         font-size: 13px;
-        line-height: 17px;
-        color: #aaa;
-        text-align: left;
-      }
-
-      #non-chrome {
-        position: absolute;
-        left: 20px;
-        top: 50px;
-        font-size: 14px;
         line-height: 17px;
         color: #aaa;
         text-align: left;
@@ -133,11 +120,8 @@
     </div>
 
     <footer id="protip">
-      Not working for you? Try <a href="#" onClick="window.location.reload()">refreshing the page.</a> (<a href="#" onClick="$('#protip').hide()">Dismiss</a>)
-    </footer>
-
-    <footer id="non-chrome">
-
+      Not working for you? Try <a href="#" onClick="window.location.reload()">refreshing the page.</a> <br />
+      (You might have to do this a few times.) (<a href="#" onClick="$('#protip').hide()">Dismiss</a>)
     </footer>
 
     <footer id="about">
@@ -150,14 +134,6 @@
     <script src="music.js"></script>
     <script src="instrument.js"></script>
     <script src="musictracks.js"></script>
-
-    <script>
-      $(function() {
-        if (BrowserDetect.browser !== "Chrome") {
-          $('#non-chrome').text("It looks as if you're using " + BrowserDetect.browser + " as your browser. Right now, only Chrome is capable of playing the sounds and making the 3D graphics necessary for this application. Sorry about that.");
-        }
-      });
-    </script>
 
     <script type="text/javascript">
       var _gaq = _gaq || [];
