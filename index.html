@@ -14,10 +14,9 @@
 
     <script>
       $(function() {
-        gl = canvas.getContext("webgl");
         if (BrowserDetect.browser !== "Chrome") {
           $('#bad-browser').text("It looks as if you're using " + BrowserDetect.browser + " as your browser. Right now, only Chrome is capable of playing the sounds necessary for this application. Sorry about that.");
-        } else if (!window.WebGLRenderingContext || (!gl)) {
+        } else if (!window.WebGLRenderingContext) {
           $('#no-webgl').text("Your web browser or computer cannot handle WebGL and so cannot display this page. You might want to check out <a href='http://get.webgl.org/troubleshooting'>WebGL troubleshooting</a> or something.");
         } else {
           window.location = "./music.html";
