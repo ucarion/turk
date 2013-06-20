@@ -298,5 +298,5 @@ function getSubmenu(composer, pieces) {
 
 function getChoice(composer, piece, number) {
   var target = number + '-' + composer +' - ' + piece;
-  return '<li><a href="#" onClick="switchTo(\'tracks/' + target + '\')">' + piece + '</a></li>'
+  return '<li><a href="#' + encodeURIComponent(piece) + '">' + piece + '</a></li>'
 }
