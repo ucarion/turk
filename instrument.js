@@ -148,7 +148,7 @@ function addLighting() {
 
 function addCannon() {
   var cannon = new THREE.Mesh(
-    new THREE.TubeGeometry(cannonTopRadius, cannonBaseRadius, cannonTopRadius - cannonThickness, cannonBaseRadius - cannonThickness, cannonHeight, 32, 1, false);,
+    new THREE.TubeGeometry(cannonTopRadius, cannonBaseRadius, cannonTopRadius - cannonThickness, cannonBaseRadius - cannonThickness, cannonHeight, 32, 1, false),
     new THREE.MeshPhongMaterial({ color: brassColor })
   );
 
