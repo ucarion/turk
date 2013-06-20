@@ -142,24 +142,10 @@ function addLighting() {
 }
 
 function addCannon() {
-  var cannon = new THREE.Object3D();
-  var numParts = 36;
-  for (var i = 0; i < numParts; i++) {
-    var part = new THREE.Mesh(
-      new THREE.CubeGeometry(cannonHeight, cannonThickness, 2 * Math.PI * cannonTopRadius / numParts),
-      new THREE.MeshPhongMaterial({ color: brassColor })
-    );
-
-    part.position.x = (cannonTopRadius + cannonBaseRadius) / 2 - cannonThickness / 2;
-    part.rotation.z = Math.PI / 2 - Math.asin((cannonTopRadius - cannonBaseRadius) / cannonHeight);
-
-    var temp = new THREE.Object3D();
-    temp.add(part);
-
-    temp.rotation.y = i * 2 * Math.PI / numParts;
-
-    cannon.add(temp);
-  }
+  var cannon = new THREE.Mesh(
+    new THREE.TubeGeometry(cannonTopRadius, cannonBaseRadius, cannonTopRadius - cannonThickness, cannonBaseRadius - cannonThickness, cannonHeight, 32, 1, false);,
+    new THREE.MeshPhongMaterial({ color: brassColor })
+  );
 
   scene.add(cannon);
 
@@ -209,7 +195,8 @@ function addKeys() {
 function addBuckets() {
   for (var i = 0; i < numKeys; i++) {
     var bucket = new THREE.Mesh(
-      new THREE.CylinderGeometry(bucketTopRadius, bucketBaseRadius, bucketHeight, 32, 1, false),
+      // new THREE.CylinderGeometry(bucketTopRadius, bucketBaseRadius, bucketHeight, 32, 1, false),
+      new THREE.TubeGeometry(bucketTopRadius, bucketBaseRadius, bucketTopRadius - bucketThickness, bucketBaseRadius - bucketThickness, bucketHeight, 16, 1, false),
       new THREE.MeshPhongMaterial({ color: brassColor })
     );
 
