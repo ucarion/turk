@@ -10,7 +10,9 @@ window.onload = function() {
   MIDI.loadPlugin(function() {
     console.log("Sound being generated with " + MIDI.lang + ".");
     
-    switchTo('tracks/125-Liszt - Hungarian Rhapsody No-2');
+    if (window.location.hash === '#' || window.location.hash === '') {
+      switchTo('tracks/125-Liszt - Hungarian Rhapsody No-2');
+    }
   }, "soundfont/acoustic_grand_piano-mp3.js");
 }
 

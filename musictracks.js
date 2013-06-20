@@ -244,6 +244,26 @@ $(function() {
   }
 
   addToDropdown(currComposer, getSubmenu(currComposer, pieces)); // Off by Von Weber (read it with German accent)
+
+  // this code allows users to change pieces by changing URLs
+  window.onhashchange = function() {
+    if (window.location.hash.length <= 1) {
+      return;
+    }
+
+    var target = decodeURIComponent(window.location.hash.substring(1));
+
+    console.log(target);
+
+    for (var i = 0; i < tracks.length; i++) {
+      if (tracks[i].indexOf(target) != -1) {
+        console.log('swith');
+        switchTo('tracks/' + tracks[i])
+      }
+    }
+  }
+
+  window.onhashchange();
 });
 
 function addToDropdown(composer, submenu) {
