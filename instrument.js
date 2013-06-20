@@ -37,6 +37,11 @@ var bucketPositionOffset = 0.2;
 var bucketBaseRadius = 3;
 var bucketTopRadius = 5;
 var bucketHeight = 12;
+var bucketThickness = 1;
+
+var darkBaseRadius = bucketBaseRadius + 0.5;
+var darkBaseHeight = 1;
+var blackColor = 0x000000;
 
 var tubeRadius = 3;
 
@@ -231,8 +236,17 @@ function addTubing() {
 
     upTube.position.x = bucketRadiusToCannon;
 
+    var darkBucketBase = new THREE.Mesh(
+      new THREE.CylinderGeometry(darkBaseRadius, darkBaseRadius, darkBaseHeight, 16, 1),
+      new THREE.MeshPhongMaterial({ color: blackColor })
+    );
+
+    darkBucketBase.position.y = cannonHeight / 4;
+    darkBucketBase.position.x = bucketRadiusToCannon;
+
     var temp = new THREE.Object3D();
     temp.add(upTube);
+    temp.add(darkBucketBase);
 
     temp.position.y = -cannonHeight / 4;
     temp.rotation.y = i * 2 * Math.PI / numKeys;
