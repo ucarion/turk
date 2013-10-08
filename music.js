@@ -11,7 +11,7 @@ window.onload = function() {
     console.log("Sound being generated with " + MIDI.lang + ".");
     
     if (window.location.hash === '#' || window.location.hash === '') {
-      switchTo('tracks/125-Liszt - Hungarian Rhapsody No-2');
+      switchTo('tracks/157-Rachmaninov - Flight of the Bumblebee');
     }
   }, "soundfont/acoustic_grand_piano-mp3.js");
 }
