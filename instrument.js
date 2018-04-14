@@ -71,12 +71,14 @@ var ballHeadstart = 1730;
 var timeInSong = -startDelay;
 var lastUpdatedTime;
 
+var sphereGeo, tubeGeo, cylGeoTop, cylGeoBottom, spokeGeo;
+
 function Ball(keyTarget) {
   this.target = keyTarget;
   this.angle = 2 * Math.PI * keyTarget / numKeys;
   this.velocityUp = initVelocity * Math.sin(firingAngle);
   this.cannon = new THREE.Mesh(
-    new THREE.SphereGeometry(ballRadius, 16, 16),
+    sphereGeo,
     new THREE.MeshPhongMaterial({ color: ballColor })
   );
   this.cannon.position.y = 0;
@@ -100,6 +102,12 @@ function init() {
   renderer = new THREE.WebGLRenderer();
   camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
   scene = new THREE.Scene();
+  
+  sphereGeo = new THREE.SphereGeometry(ballRadius, 16, 16); // more symmetrical is having something like 24, 12
+  tubeGeo = new THREE.TubeGeometry(bucketTopRadius, bucketBaseRadius, bucketTopRadius - bucketThickness, bucketBaseRadius - bucketThickness, bucketHeight, 16, 1, false);
+  cylGeoTop = new THREE.CylinderGeometry(tubeRadius, tubeRadius, cannonHeight / 2, 32, 1, false);
+  cylGeoBottom = new THREE.CylinderGeometry(darkBaseRadius, darkBaseRadius, darkBaseHeight, 16, 1);
+  spokeGeo = new THREE.CylinderGeometry(tubeRadius, tubeRadius, bucketRadiusToCannon, 32, 1, false);
 
   camera.position.y = 200;
   camera.position.z = 200;
@@ -201,7 +209,7 @@ function addBuckets() {
   for (var i = 0; i < numKeys; i++) {
     var bucket = new THREE.Mesh(
       // new THREE.CylinderGeometry(bucketTopRadius, bucketBaseRadius, bucketHeight, 32, 1, false),
-      new THREE.TubeGeometry(bucketTopRadius, bucketBaseRadius, bucketTopRadius - bucketThickness, bucketBaseRadius - bucketThickness, bucketHeight, 16, 1, false),
+      tubeGeo,
       new THREE.MeshPhongMaterial({ color: brassColor })
     );
 
@@ -230,14 +238,14 @@ function addTubing() {
   
   for (var i = 0; i < numKeys; i++) {
     var upTube = new THREE.Mesh(
-      new THREE.CylinderGeometry(tubeRadius, tubeRadius, cannonHeight / 2, 32, 1, false),
+      cylGeoTop,
       new THREE.MeshPhongMaterial({ color: tubeColor })
     );
 
     upTube.position.x = bucketRadiusToCannon;
 
     var darkBucketBase = new THREE.Mesh(
-      new THREE.CylinderGeometry(darkBaseRadius, darkBaseRadius, darkBaseHeight, 16, 1),
+      cylGeoBottom,
       new THREE.MeshPhongMaterial({ color: blackColor })
     );
 
@@ -256,7 +264,7 @@ function addTubing() {
 
   for (var i = 0; i < numCentralizingPipes; i++) {
     var inTube = new THREE.Mesh(
-      new THREE.CylinderGeometry(tubeRadius, tubeRadius, bucketRadiusToCannon, 32, 1, false),
+      spokeGeo,
       new THREE.MeshPhongMaterial({ color: tubeColor })
     );
 
